@@ -1,0 +1,25 @@
+<h3>Welcome</h3>
+
+<div class="jumbotron">
+	<div class="container">
+	  <h1>Welcome to Test Maker</h1>
+	  <p>Get ready to ace all your tests in 3 steps! <small>(Hint: not by downloading dinosaur-aged exams)</small></p>
+	  <p>
+		  <%= link_to t('Get Started! >', :default => t("Get Started! >")),
+	            new_test_path,
+	            :class => 'btn btn-success btn-lg' %>
+    	  <%= link_to t('Get Started! >', :default => t("About")),
+            page_path('about') ,
+            :class => 'btn btn-primary btn-lg' %>
+	  </p>
+	  <p></p>
+	</div>
+</div>
+
+<body background="http://eduspiral.files.wordpress.com/2012/04/library1.jpg">
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../js/jquery-1.11.1.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/index.js"></script>

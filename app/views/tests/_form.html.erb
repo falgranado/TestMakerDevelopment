@@ -1,0 +1,60 @@
+<%= form_for @test do |f| %>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h2>1. Course:</h2>
+          <div class="form-group">
+            <%= f.collection_select :course, Course.all, :name, :name, {prompt: "Select a course"}, {class: "form-control"} %>
+          </div>
+        </select>
+
+
+        </div>
+        <div class="col-sm-4">
+          <h2>2. Topics:</h2>
+          <div id="topics">
+          <div class="form-group">
+            <%= f.collection_select :topics, Topic.all, :name, :name, {prompt: "Choose some topics"}, {class: "form-control"} %>
+          </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <h2>3. Settings:</h2>
+          <div id="settings">
+            <form role="form">
+            <div class="form-group">
+              <label for="numberOfPromblems">Amount of Problems:</label>
+                <div class="form-group">
+                  <%= f.number_field :problems, :class => 'form-control', :placeholder => 'Enter the amount of problems' %>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="difficultySelect">Difficulty:</label>
+              <div class="form-group">
+                <%= f.number_field :difficulty, :class => 'form-control', :placeholder => '0-3 from least to highest difficulty' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="time">Time:</label>
+              <div class="form-group">
+                <%= f.number_field :time, :class => 'form-control', :placeholder => 'Time (in minutes)' %>
+              </div>
+              <p class="help-block">If the timer is too much pressure, you can hide it!</p>
+            </div>
+              <%= f.label :hide_timer do %>
+                <%= f.check_box :hide_timer %>
+                Hide Timer
+              <% end %>
+
+            <div class="form-actions">
+              <%= f.submit nil, :class => 'btn btn-primary', :value => 'GO!' %>
+            </div>
+          </form>
+          
+
+          </div>
+        </div>
+      </div>
+    </div>
+<% end %>

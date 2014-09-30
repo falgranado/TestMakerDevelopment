@@ -1,0 +1,69 @@
+<%- model_class = Test -%>
+
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class='page-header'>
+      <h1 class='pull-left'>
+        <%=t '.title', :default => model_class.model_name.human %>
+      </h1>
+    </div>
+  </div>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:course) %>:</strong></dt>
+  <dd><%= @test.course %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:topics) %>:</strong></dt>
+  <dd><%= @test.topics %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:difficulty) %>:</strong></dt>
+  <dd><%= @test.difficulty %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:problems) %>:</strong></dt>
+  <dd><%= @test.problems %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:time) %>:</strong></dt>
+  <dd><%= @test.time %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:hide_timer) %>:</strong></dt>
+  <dd><%= @test.hide_timer %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              tests_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_test_path(@test), :class => 'btn btn-primary' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              test_path(@test),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Description</th>
+      <th>Difficulty</th>
+      <th>Solution</th>
+      <th>Process</th>
+      <th>Book ISBN</th>
+      <th>Page</th>
+      <th>Exercise Number</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Problem.all.each do |problem| %>
+      <% if @test.topics == problem.topic.name %>
+        <tr>
+          <td><%= link_to problem.id, problem_path(problem) %></td>
+          <td><%= image_tag problem.description.url(:thumb) %></td>
+          <td><%= problem.difficulty %></td>
+          <td><%= problem.solution %></td>
+          <td><%= image_tag problem.process.url(:thumb) %></td>
+          <td><%= problem.book_isbn %></td>
+          <td><%= problem.page %></td>
+          <td><%= problem.exercise_number %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
